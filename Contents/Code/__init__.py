@@ -240,9 +240,14 @@ class PlexMovieAgent(Agent.Movies):
         else:
           id = tmdb_dict['id']
 
+        if tmdb_dict['release_date'].split('-'):
+          year = tmdb_dict['release_date'].split('-')[0]
+        else:
+          year = ''
+
         result = MetadataSearchResult(id=id,
                                       name=tmdb_dict['title'],
-                                      year=int(tmdb_dict['release_date'].split('-')[0]),
+                                      year=year,
                                       score=100,
                                       lang=lang)
         Log(result)
